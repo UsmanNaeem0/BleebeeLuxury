@@ -1,0 +1,200 @@
+🐝 Prompt: Feezish — Milk & Honey Skincare Website Inspired by Blebee
+
+Design a luxurious, modern eCommerce website for Feezish, a premium Milk & Honey skincare brand inspired by the Blebee VinovaTheme aesthetic.
+The goal: blend organic warmth, creamy textures, and golden honey visuals with a high-end beauty brand feel.
+
+🎨 Theme & Visual Aesthetic
+
+Overall Look: Elegant, warm, and natural — mix of honey gold, milky white, and soft beige tones.
+
+Primary Colors:
+
+Honey Gold: #F6C76B
+
+Cream White: #FFF8E7
+
+Warm Beige: #FDF3E6
+
+Soft Brown Text: #5A4632
+
+Typography:
+
+Headings → Playfair Display (serif, luxury feel)
+
+Body → Poppins (modern, readable)
+
+Background: Gradient blend of milk-white and honey amber with soft lighting and faint honeycomb pattern.
+
+Style: Rounded edges, glowing buttons, smooth transitions, and creamy drop shadows.
+
+Effects: Subtle honey-drip dividers, glass-style sections, and floating animation on hover.
+
+🧭 1. Navigation Bar
+
+Fixed top navigation with semi-transparent background and blur.
+
+Left: Feezish logo (milk drop merged with honey swirl).
+
+Center/Right Menu: Home | Shop | About | Contact | Cart (🛒 icon)
+
+Highlight active menu with gold underline animation.
+
+Hover: Smooth honey glow effect under each menu item.
+
+CTA: “Shop Now” button in honey gradient (#F6C76B → #F0A54D).
+
+Responsive: On mobile, use hamburger menu with slide-in panel.
+
+🍯 2. Hero / Welcome Banner
+
+Inspired by Blebee’s dripping honey banner.
+
+Scene Design:
+
+A soft animated background showing honey and milk splashes blending together.
+
+A cute bee gently flying over creamy milk waves.
+
+Text (animated fade-in):
+🐝 “Welcome to Feezish”
+“Where nature meets skincare — indulge in the blend of Milk & Honey.”
+
+Buttons:
+
+“Explore Collection” (solid honey gold)
+
+“Shop Now” (outlined with gold border + glow on hover)
+
+Add honey drip animation at the bottom edge of the hero section.
+
+🌼 3. About Section
+
+Layout similar to Blebee’s About Honey section.
+
+Left: Image or short looping video of honey being poured into milk.
+
+Right: Headline: “Nourish Your Skin with Nature’s Purest Blend.”
+Paragraph: “Feezish skincare products are crafted with organic milk and golden honey to hydrate, heal, and enhance your natural glow.”
+
+Add soft fade-up animations for the text and images.
+
+🧴 4. Featured Products Section
+
+Just like Blebee’s product grid — 3 or 4 products in a row, minimal clean design.
+
+Section Title: “Our Bestsellers”
+
+Each card includes:
+
+Product image (soft shadow)
+
+Name, short description, price
+
+“Add to Cart” button with golden gradient hover
+
+Hover animation: light shine across product image + soft zoom.
+
+Background: soft beige gradient with floating honey sparkles.
+
+🌸 5. Collections / Shop Categories
+
+Inspired by Blebee’s “Shop by Category” blocks.
+Display categories like:
+
+Face Care
+
+Body Creams
+
+Serums
+
+Honey Masks
+
+Each block has:
+
+Category image
+
+Honey overlay animation
+
+Text: “Shop Now” on hover with smooth scale-in effect.
+
+💛 6. Why Choose Feezish Section
+
+Headline: “Why Choose Feezish?”
+
+Icons + short descriptions (4 cards):
+
+🍯 100% Natural Ingredients
+
+🥛 Enriched with Milk & Honey
+
+🌿 Dermatologist-Tested
+
+🌸 Cruelty-Free & Eco-Friendly
+
+Add small glowing honey drops as background accents.
+
+💬 7. Testimonials Section
+
+Like Blebee’s slider section — creamy gold background with honey swirls.
+
+3–4 testimonial cards with circular photos, quotes, and ratings.
+
+Title: “Loved by Skin, Trusted by You.”
+
+Use a soft auto-slider with fade transitions.
+
+💌 8. Newsletter Signup
+
+Section headline: “Join the Glow Club.”
+
+Subtext: “Subscribe for skincare tips and exclusive offers.”
+
+Input field + button (gold gradient).
+
+Background: subtle milk swirl animation.
+
+Include small bee buzzing around text or input box animation loop.
+
+⚪ 9. Footer
+
+Background: #FFF3E2 with golden top border.
+
+Columns:
+
+About Feezish
+
+Quick Links (Shop, About, Contact, FAQs)
+
+Follow Us (Instagram, Facebook, Pinterest)
+
+Newsletter signup mini box
+
+Bottom line: “© 2025 Feezish — Crafted with Love, Milk & Honey.”
+
+✨ Animations
+
+Scroll-triggered fade-ins, slow zooms, and floating elements.
+
+Honeybee has soft looping hover animation path.
+
+Honey drip dividers use SVG animation at section boundaries.
+
+Buttons glow smoothly on hover — not flashy.
+
+📱 Responsive Behavior
+
+Fully mobile-friendly, like Blebee’s Shopify layout.
+
+Hero banner stacks vertically.
+
+Product grid turns into a 2-column scrollable layout on phones.
+
+Footer collapses into accordions.
+
+💅 General Notes
+
+Keep the layout breathable with generous spacing and clean alignment.
+
+Use subtle motion — luxury over exaggeration.
+
+All design should feel creamy, organic, and cohesive with the milk & honey palette.
