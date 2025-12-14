@@ -1,7 +1,109 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "current": {
     "logo_text": "Feezish",
-    "color_primary": "#f4c430"
+    "color_primary": "#f4c430",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "logo_text": "Feezish"
+        }
+      },
+      "hero": {
+        "type": "hero",
+        "settings": {
+          "hero_badge": "Premium Milk & Honey Skincare",
+          "hero_title": "Welcome to Feezish",
+          "hero_subtitle": "Where nature meets skincare — indulge in the blend of Milk & Honey",
+          "button_1_text": "Explore Collection",
+          "button_1_link": "",
+          "button_2_text": "Shop Now",
+          "button_2_link": ""
+        }
+      },
+      "about": {
+        "type": "about",
+        "settings": {
+          "about_label": "Our Story",
+          "about_title": "Nourish Your Skin with Nature's Purest Blend",
+          "about_description_1": "Feezish skincare products are crafted with organic milk and golden honey to hydrate, heal, and enhance your natural glow. We believe in the power of nature's finest ingredients to transform your skincare routine into a luxurious ritual.",
+          "about_description_2": "Each product is carefully formulated to combine ancient beauty secrets with modern science, delivering exceptional results that you can see and feel. Experience the difference of pure, natural ingredients working in harmony with your skin."
+        }
+      },
+      "featured-products": {
+        "type": "featured-products",
+        "settings": {
+          "section_label": "Premium Collection",
+          "section_title": "Our Bestsellers",
+          "section_description": "Discover our most-loved products, crafted with the finest natural ingredients",
+          "featured_collection": "",
+          "products_to_show": 4
+        }
+      },
+      "categories": {
+        "type": "categories",
+        "blocks": {
+          "category_ym98Rp": {
+            "type": "category",
+            "settings": {
+              "category_name": "Feezish Glow Drop Face Wash",
+              "category_description": "Removes dead skin and dirt to make your face bright and fresh.\nUnclogs pores naturally for soft and smooth skin you’ll love.\nHydrates and nourishes to keep your skin healthy and glowing.\nTurns your daily wash into a moment of care for your skin.\n\nReveal your skin’s natural glow with Glow Drop Face Wash, a gentle yet effective cleanser infused with the nourishing goodness of Milk &amp; Honey Extract. Specially designed to cleanse without over-drying, this formula helps maintain your skin’s natural balance while leaving it soft, smooth, and radiant.\n\n\n\nEnriched with Glycerin and Sorbitol, it helps attract and retain moisture, ensuring skin stays hydrated after every wash. Squalene provides an extra layer of nourishment, while Potassium Cocoyl Glycinate and Sodium Myreth Sulfate create a rich, creamy lather that gently lifts away dirt, oil, and impurities.\n\n\n\nWith its mild, pH-balanced formula, Glow Drop Face Wash supports a clean, healthy complexion and a fresh, luminous finish suitable for everyday use and all skin types.",
+              "category_image": "shopify://shop_images/2.jpg",
+              "category_link": ""
+            }
+          }
+        },
+        "block_order": [
+          "category_ym98Rp"
+        ],
+        "settings": {
+          "section_label": "Browse Collections",
+          "section_title": "Shop by Category"
+        }
+      },
+      "why-choose": {
+        "type": "why-choose",
+        "settings": {
+          "section_label": "Why Feezish",
+          "section_title": "Why Choose Feezish?",
+          "section_description": "Experience the difference of pure, natural skincare that truly cares for you"
+        }
+      },
+      "testimonials": {
+        "type": "testimonials",
+        "settings": {
+          "section_label": "Testimonials",
+          "section_title": "Loved by Skin, Trusted by You"
+        }
+      },
+      "newsletter": {
+        "type": "newsletter",
+        "settings": {
+          "section_title": "Join the Glow Club",
+          "section_subtitle": "Subscribe for skincare tips, exclusive offers, and be the first to know about new products",
+          "button_text": "Subscribe"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "footer_about": "Premium Milk & Honey skincare products crafted with nature's finest ingredients to nourish and enhance your natural glow.",
+          "instagram_url": "",
+          "facebook_url": "",
+          "pinterest_url": "",
+          "twitter_url": ""
+        }
+      }
+    },
+    "content_for_index": []
   }
 }
-
