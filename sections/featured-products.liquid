@@ -1,0 +1,379 @@
+{% comment %}
+  Featured Products section
+{% endcomment %}
+
+{% schema %}
+{
+  "name": "Featured Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_label",
+      "label": "Section Label",
+      "default": "Premium Collection"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Our Bestsellers"
+    },
+    {
+      "type": "textarea",
+      "id": "section_description",
+      "label": "Section Description",
+      "default": "Discover our most-loved products, crafted with the finest natural ingredients"
+    },
+    {
+      "type": "collection",
+      "id": "featured_collection",
+      "label": "Featured Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Products to show",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 4
+    }
+  ]
+}
+{% endschema %}
+
+<section id="products" class="featured-products-section" data-testid="section-products">
+  <div class="featured-products-section__decoration featured-products-section__decoration--1"></div>
+  <div class="featured-products-section__decoration featured-products-section__decoration--2"></div>
+
+  <div class="featured-products-section__container">
+    <div class="featured-products-section__header">
+      <span class="featured-products-section__label">{{ section.settings.section_label | default: "Premium Collection" }}</span>
+      <h2 class="featured-products-section__title" data-testid="text-products-title">
+        {{ section.settings.section_title | default: "Our Bestsellers" }}
+      </h2>
+      <p class="featured-products-section__description">
+        {{ section.settings.section_description | default: "Discover our most-loved products, crafted with the finest natural ingredients" }}
+      </p>
+    </div>
+
+    {% if section.settings.featured_collection != blank %}
+      {% assign collection = collections[section.settings.featured_collection] %}
+      {% assign products_to_show = section.settings.products_to_show | default: 4 %}
+      
+      <div class="featured-products-section__grid">
+        {% for product in collection.products limit: products_to_show %}
+          <div class="product-card" data-testid="card-product-{{ product.id }}">
+            <div class="product-card__image-wrapper">
+              {% if product.featured_image %}
+                <img 
+                  src="{{ product.featured_image | image_url: width: 600 }}" 
+                  alt="{{ product.title | escape }}"
+                  class="product-card__image"
+                  data-testid="img-product-{{ product.id }}"
+                  loading="lazy"
+                >
+              {% else %}
+                <div class="product-card__placeholder"></div>
+              {% endif %}
+              <div class="product-card__overlay"></div>
+              {% if product.compare_at_price > product.price %}
+                <span class="product-card__badge" data-testid="badge-sale-{{ product.id }}">Sale</span>
+              {% endif %}
+            </div>
+            <div class="product-card__content">
+              <h3 class="product-card__title" data-testid="text-product-name-{{ product.id }}">
+                {{ product.title }}
+              </h3>
+              <p class="product-card__description" data-testid="text-product-description-{{ product.id }}">
+                {{ product.description | strip_html | truncate: 100 }}
+              </p>
+              <div class="product-card__price" data-testid="text-product-price-{{ product.id }}">
+                <span class="product-card__price-current">
+                  {{ product.price | money }}
+                </span>
+                {% if product.compare_at_price > product.price %}
+                  <span class="product-card__price-original" data-testid="text-product-original-price-{{ product.id }}">
+                    {{ product.compare_at_price | money }}
+                  </span>
+                {% endif %}
+              </div>
+            </div>
+            <div class="product-card__footer">
+              <form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                <button type="submit" class="button button--primary button--full" data-testid="button-add-to-cart-{{ product.id }}">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;">
+                    <circle cx="8" cy="21" r="1"></circle>
+                    <circle cx="19" cy="21" r="1"></circle>
+                    <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                  </svg>
+                  Add to Cart
+                </button>
+              </form>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="featured-products-section__empty" data-testid="empty-products">
+        <p>No products available at the moment.</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .featured-products-section {
+    position: relative;
+    padding: 4rem 1rem;
+    background: linear-gradient(to bottom, hsl(var(--secondary) / 0.3), hsl(var(--background)), hsl(var(--secondary) / 0.2));
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .featured-products-section {
+      padding: 6rem 1rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .featured-products-section {
+      padding: 8rem 1rem;
+    }
+  }
+
+  .featured-products-section__decoration {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(3rem);
+    animation: pulse 4s ease-in-out infinite;
+  }
+
+  .featured-products-section__decoration--1 {
+    top: 5rem;
+    left: 2.5rem;
+    width: 8rem;
+    height: 8rem;
+    background: hsl(var(--primary) / 0.1);
+  }
+
+  .featured-products-section__decoration--2 {
+    bottom: 5rem;
+    right: 2.5rem;
+    width: 10rem;
+    height: 10rem;
+    background: hsl(42 100% 69% / 0.1);
+    animation-delay: 1s;
+  }
+
+  .featured-products-section__container {
+    max-width: 1280px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+  }
+
+  .featured-products-section__header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .featured-products-section__header {
+      margin-bottom: 4rem;
+    }
+  }
+
+  .featured-products-section__label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: hsl(var(--primary));
+  }
+
+  .featured-products-section__title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.875rem, 4vw, 3rem);
+    font-weight: bold;
+    color: hsl(var(--foreground));
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .featured-products-section__description {
+    font-size: 1rem;
+    color: hsl(var(--muted-foreground));
+    max-width: 42rem;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .featured-products-section__description {
+      font-size: 1.125rem;
+    }
+  }
+
+  .featured-products-section__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .featured-products-section__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .featured-products-section__grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  .product-card {
+    background: hsl(var(--card));
+    border-radius: 0.5rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%;
+  }
+
+  .product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  .product-card__image-wrapper {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: hsl(var(--secondary) / 0.3);
+  }
+
+  .product-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+
+  .product-card:hover .product-card__image {
+    transform: scale(1.1);
+  }
+
+  .product-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, hsl(var(--primary) / 0.2), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .product-card:hover .product-card__overlay {
+    opacity: 1;
+  }
+
+  .product-card__badge {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .product-card__content {
+    padding: 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (min-width: 768px) {
+    .product-card__content {
+      padding: 1.5rem;
+    }
+  }
+
+  .product-card__title {
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: hsl(var(--foreground));
+    margin-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .product-card__title {
+      font-size: 1.25rem;
+    }
+  }
+
+  .product-card__description {
+    font-size: 0.875rem;
+    color: hsl(var(--muted-foreground));
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex: 1;
+  }
+
+  .product-card__price {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .product-card__price-current {
+    font-weight: bold;
+    font-size: 1.125rem;
+    color: hsl(var(--primary));
+  }
+
+  .product-card__price-original {
+    font-size: 0.875rem;
+    color: hsl(var(--muted-foreground));
+    text-decoration: line-through;
+  }
+
+  .product-card__footer {
+    padding: 0 1rem 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .product-card__footer {
+      padding: 0 1.5rem 1.5rem;
+    }
+  }
+
+  .featured-products-section__empty {
+    text-align: center;
+    padding: 5rem 1rem;
+    color: hsl(var(--muted-foreground));
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+</style>
+

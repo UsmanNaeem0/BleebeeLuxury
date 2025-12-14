@@ -1,0 +1,194 @@
+/* CSS Variables */
+:root {
+  --button-outline: rgba(0,0,0, .10);
+  --badge-outline: rgba(0,0,0, .05);
+  --opaque-button-border-intensity: -8;
+  --elevate-1: rgba(0,0,0, .03);
+  --elevate-2: rgba(0,0,0, .08);
+  --background: 44 100% 96%;
+  --foreground: 30 35% 24%;
+  --border: 42 50% 88%;
+  --card: 0 0% 100%;
+  --card-foreground: 30 35% 24%;
+  --card-border: 42 30% 92%;
+  --sidebar: 46 86% 94%;
+  --sidebar-foreground: 30 35% 24%;
+  --sidebar-border: 42 50% 88%;
+  --sidebar-primary: 42 89% 69%;
+  --sidebar-primary-foreground: 44 100% 96%;
+  --sidebar-accent: 46 70% 90%;
+  --sidebar-accent-foreground: 30 35% 24%;
+  --sidebar-ring: 42 89% 69%;
+  --popover: 44 100% 96%;
+  --popover-foreground: 30 35% 24%;
+  --popover-border: 42 50% 88%;
+  --primary: 42 89% 69%;
+  --primary-foreground: 44 100% 96%;
+  --secondary: 46 70% 90%;
+  --secondary-foreground: 30 35% 24%;
+  --muted: 46 60% 92%;
+  --muted-foreground: 30 25% 45%;
+  --accent: 46 70% 90%;
+  --accent-foreground: 30 35% 24%;
+  --destructive: 0 70% 45%;
+  --destructive-foreground: 0 20% 98%;
+  --input: 42 40% 70%;
+  --ring: 42 89% 69%;
+  --font-sans: 'Poppins', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+  --font-mono: Menlo, monospace;
+  --radius: .5rem;
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  line-height: 1.5;
+}
+
+.gradient-background {
+  background: hsl(var(--background));
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+/* Buttons */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s;
+  background: transparent;
+  color: hsl(var(--foreground));
+}
+
+.button--primary {
+  background: linear-gradient(to right, hsl(var(--primary)), hsl(42 100% 69%));
+  color: hsl(var(--primary-foreground));
+}
+
+.button--primary:hover {
+  background: linear-gradient(to right, hsl(42 100% 69%), hsl(var(--primary)));
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.button--outline {
+  border: 2px solid hsl(var(--primary));
+  color: hsl(var(--primary));
+  background: hsl(var(--background) / 0.5);
+  backdrop-filter: blur(8px);
+}
+
+.button--outline:hover {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}
+
+.button--large {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+}
+
+.button--full {
+  width: 100%;
+}
+
+/* Utility Classes */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.skip-to-content-link {
+  position: absolute;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  padding: 1rem;
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  text-decoration: none;
+  transform: translateY(-100%);
+  transition: transform 0.3s;
+}
+
+.skip-to-content-link:focus {
+  transform: translateY(0);
+}
+
+.content-for-layout {
+  padding-top: 4rem;
+}
+
+.focus-none:focus {
+  outline: none;
+}
+
+.focus-inset:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  .content-for-layout {
+    padding-top: 4rem;
+  }
+}
+

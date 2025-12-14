@@ -1,0 +1,358 @@
+{% comment %}
+  Why Choose section
+{% endcomment %}
+
+{% schema %}
+{
+  "name": "Why Choose",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_label",
+      "label": "Section Label",
+      "default": "Why Feezish"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Why Choose Feezish?"
+    },
+    {
+      "type": "textarea",
+      "id": "section_description",
+      "label": "Section Description",
+      "default": "Experience the difference of pure, natural skincare that truly cares for you"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "feature_title",
+          "label": "Feature Title"
+        },
+        {
+          "type": "textarea",
+          "id": "feature_description",
+          "label": "Feature Description"
+        },
+        {
+          "type": "select",
+          "id": "feature_icon",
+          "label": "Feature Icon",
+          "options": [
+            {
+              "value": "leaf",
+              "label": "Leaf"
+            },
+            {
+              "value": "droplets",
+              "label": "Droplets"
+            },
+            {
+              "value": "shield",
+              "label": "Shield"
+            },
+            {
+              "value": "heart",
+              "label": "Heart"
+            }
+          ],
+          "default": "leaf"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why Choose",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "feature_title": "100% Natural Ingredients",
+            "feature_description": "Only the finest organic milk and pure golden honey, sourced sustainably",
+            "feature_icon": "leaf"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "feature_title": "Enriched with Milk & Honey",
+            "feature_description": "Ancient beauty secrets combined with modern skincare science",
+            "feature_icon": "droplets"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "feature_title": "Dermatologist-Tested",
+            "feature_description": "Clinically proven formulas that are safe and effective for all skin types",
+            "feature_icon": "shield"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "feature_title": "Cruelty-Free & Eco-Friendly",
+            "feature_description": "Never tested on animals, always kind to the planet",
+            "feature_icon": "heart"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<section class="why-choose-section" data-testid="section-why-choose">
+  <div class="why-choose-section__decoration why-choose-section__decoration--1"></div>
+  <div class="why-choose-section__decoration why-choose-section__decoration--2"></div>
+  <div class="why-choose-section__decoration why-choose-section__decoration--3"></div>
+  <div class="why-choose-section__decoration why-choose-section__decoration--4"></div>
+
+  <div class="why-choose-section__container">
+    <div class="why-choose-section__header">
+      <span class="why-choose-section__label">{{ section.settings.section_label | default: "Why Feezish" }}</span>
+      <h2 class="why-choose-section__title" data-testid="text-why-choose-title">
+        {{ section.settings.section_title | default: "Why Choose Feezish?" }}
+      </h2>
+      <p class="why-choose-section__description">
+        {{ section.settings.section_description | default: "Experience the difference of pure, natural skincare that truly cares for you" }}
+      </p>
+    </div>
+
+    {% if section.blocks.size > 0 %}
+      <div class="why-choose-section__grid">
+        {% for block in section.blocks %}
+          <div class="feature-card" data-testid="card-feature-{{ block.id }}">
+            <div class="feature-card__icon-wrapper">
+              {% render 'icon-feature', icon: block.settings.feature_icon %}
+            </div>
+            <h3 class="feature-card__title" data-testid="text-feature-title-{{ block.id }}">
+              {{ block.settings.feature_title }}
+            </h3>
+            <p class="feature-card__description" data-testid="text-feature-description-{{ block.id }}">
+              {{ block.settings.feature_description }}
+            </p>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .why-choose-section {
+    position: relative;
+    padding: 4rem 1rem;
+    background: linear-gradient(to bottom, hsl(var(--background)), hsl(var(--secondary) / 0.3), hsl(var(--background)));
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .why-choose-section {
+      padding: 6rem 1rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .why-choose-section {
+      padding: 8rem 1rem;
+    }
+  }
+
+  .why-choose-section__decoration {
+    position: absolute;
+    border-radius: 50%;
+    background: hsl(var(--primary) / 0.3);
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .why-choose-section__decoration--1 {
+    top: 2.5rem;
+    left: 25%;
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+
+  .why-choose-section__decoration--2 {
+    top: 33%;
+    right: 25%;
+    width: 0.5rem;
+    height: 0.5rem;
+    background: hsl(42 100% 69% / 0.4);
+    animation: float-slow 8s ease-in-out infinite;
+  }
+
+  .why-choose-section__decoration--3 {
+    bottom: 25%;
+    left: 33%;
+    width: 1rem;
+    height: 1rem;
+    animation-delay: 1s;
+  }
+
+  .why-choose-section__decoration--4 {
+    bottom: 50%;
+    right: 33%;
+    width: 0.75rem;
+    height: 0.75rem;
+    background: hsl(42 100% 69% / 0.3);
+    animation: float-slow 8s ease-in-out infinite;
+    animation-delay: 2s;
+  }
+
+  .why-choose-section__container {
+    max-width: 1280px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+  }
+
+  .why-choose-section__header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .why-choose-section__header {
+      margin-bottom: 4rem;
+    }
+  }
+
+  .why-choose-section__label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: hsl(var(--primary));
+  }
+
+  .why-choose-section__title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.875rem, 4vw, 3rem);
+    font-weight: bold;
+    color: hsl(var(--foreground));
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .why-choose-section__description {
+    font-size: 1rem;
+    color: hsl(var(--muted-foreground));
+    max-width: 42rem;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .why-choose-section__description {
+      font-size: 1.125rem;
+    }
+  }
+
+  .why-choose-section__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .why-choose-section__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .why-choose-section__grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  .feature-card {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--primary) / 0.2);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .feature-card {
+      padding: 2rem;
+    }
+  }
+
+  .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  .feature-card__icon-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background: linear-gradient(to bottom right, hsl(var(--primary) / 0.2), hsl(42 100% 69% / 0.2));
+    margin: 0 auto 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .feature-card__icon-wrapper {
+      width: 5rem;
+      height: 5rem;
+    }
+  }
+
+  .feature-card__icon-wrapper svg {
+    width: 2rem;
+    height: 2rem;
+    color: hsl(var(--primary));
+  }
+
+  @media (min-width: 768px) {
+    .feature-card__icon-wrapper svg {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+  }
+
+  .feature-card__title {
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: hsl(var(--foreground));
+  }
+
+  @media (min-width: 768px) {
+    .feature-card__title {
+      font-size: 1.25rem;
+    }
+  }
+
+  .feature-card__description {
+    font-size: 0.875rem;
+    color: hsl(var(--muted-foreground));
+    line-height: 1.75;
+    flex: 1;
+  }
+
+  @media (min-width: 768px) {
+    .feature-card__description {
+      font-size: 1rem;
+    }
+  }
+</style>
+

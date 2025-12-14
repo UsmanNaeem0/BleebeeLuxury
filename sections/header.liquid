@@ -1,0 +1,344 @@
+{% comment %}
+  Header section with navigation
+{% endcomment %}
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Logo Text",
+      "default": "Feezish"
+    }
+  ]
+}
+{% endschema %}
+
+<header class="header-wrapper">
+  <nav class="header" id="header-nav" data-testid="navigation-bar">
+    <div class="header__inner">
+      <div class="header__heading">
+        <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset" data-testid="link-home">
+          <div class="header__heading-logo-wrapper">
+            <div class="header__logo-icon">
+              <span class="header__logo-text">F</span>
+            </div>
+            <span class="header__heading-logo h2">{{ section.settings.logo_text | default: "Feezish" }}</span>
+          </div>
+        </a>
+      </div>
+
+      <nav class="header__inline-menu" id="header-menu">
+        <ul class="list-menu list-menu--inline" role="list">
+          <li>
+            <a href="{{ routes.root_url }}" class="header__menu-item list-menu__item link link--text focus-inset" data-testid="link-home">
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="#shop" class="header__menu-item list-menu__item link link--text focus-inset" data-testid="link-shop">
+              <span>Shop</span>
+            </a>
+          </li>
+          <li>
+            <a href="#about" class="header__menu-item list-menu__item link link--text focus-inset" data-testid="link-about">
+              <span>About</span>
+            </a>
+          </li>
+          <li>
+            <a href="#contact" class="header__menu-item list-menu__item link link--text focus-inset" data-testid="link-contact">
+              <span>Contact</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="header__icons">
+        <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble" data-testid="button-cart">
+          {% render 'icon-cart' %}
+          <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+          <div class="cart-count-bubble">
+            {%- if cart.item_count > 0 -%}
+              <span aria-hidden="true">{{ cart.item_count }}</span>
+              <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+            {%- else -%}
+              <span aria-hidden="true">0</span>
+            {%- endif -%}
+          </div>
+        </a>
+        <a href="{{ routes.all_products_collection_url }}" class="header__icon header__icon--shop button button--primary" data-testid="button-shop-now">
+          Shop Now
+        </a>
+        <button type="button" class="header__icon header__icon--menu header__icon--summary focus-inset" aria-label="{{ 'sections.header.menu' | t }}" data-testid="button-menu-toggle" id="mobile-menu-toggle">
+          {% render 'icon-hamburger' %}
+          <span class="visually-hidden">{{ 'sections.header.menu' | t }}</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu" data-testid="mobile-menu">
+    <div class="mobile-menu__inner">
+      <nav class="mobile-menu__nav">
+        <ul class="mobile-menu__list">
+          <li>
+            <a href="{{ routes.root_url }}" class="mobile-menu__link" data-testid="mobile-link-home">Home</a>
+          </li>
+          <li>
+            <a href="#shop" class="mobile-menu__link" data-testid="mobile-link-shop">Shop</a>
+          </li>
+          <li>
+            <a href="#about" class="mobile-menu__link" data-testid="mobile-link-about">About</a>
+          </li>
+          <li>
+            <a href="#contact" class="mobile-menu__link" data-testid="mobile-link-contact">Contact</a>
+          </li>
+        </ul>
+        <a href="{{ routes.all_products_collection_url }}" class="button button--primary mobile-menu__shop-button" data-testid="mobile-button-shop-now">
+          Shop Now
+        </a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<style>
+  .header-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    transition: all 0.3s;
+  }
+
+  .header-wrapper.scrolled {
+    background: hsl(var(--background) / 0.8);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  .header {
+    background: hsl(var(--background) / 0.4);
+    backdrop-filter: blur(8px);
+  }
+
+  .header__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 4rem;
+  }
+
+  .header__heading-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+  }
+
+  .header__logo-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: linear-gradient(to bottom right, hsl(var(--primary)), hsl(42 100% 69%));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s;
+  }
+
+  .header__heading-link:hover .header__logo-icon {
+    transform: scale(1.05);
+  }
+
+  .header__logo-text {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: hsl(var(--primary-foreground));
+  }
+
+  .header__heading-logo {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: bold;
+    background: linear-gradient(to right, hsl(var(--primary)), hsl(38 100% 50%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header__inline-menu {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .header__inline-menu {
+      display: block;
+    }
+  }
+
+  .list-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .header__menu-item {
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: hsl(var(--foreground));
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s;
+  }
+
+  .header__menu-item:hover {
+    color: hsl(var(--primary));
+  }
+
+  .header__menu-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(to right, hsl(var(--primary)), hsl(42 100% 69%));
+    transition: width 0.3s;
+  }
+
+  .header__menu-item:hover::after {
+    width: 100%;
+  }
+
+  .header__icons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .header__icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    color: hsl(var(--foreground));
+    text-decoration: none;
+  }
+
+  .cart-count-bubble {
+    position: absolute;
+    top: -0.25rem;
+    right: -0.25rem;
+    width: 1rem;
+    height: 1rem;
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: bold;
+  }
+
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background: hsl(var(--background));
+    transform: translateX(100%);
+    transition: transform 0.3s;
+  }
+
+  .mobile-menu.open {
+    transform: translateX(0);
+  }
+
+  .mobile-menu__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 5rem 1rem;
+  }
+
+  .mobile-menu__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .mobile-menu__link {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: hsl(var(--foreground));
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .mobile-menu__link:hover {
+    color: hsl(var(--primary));
+  }
+
+  .mobile-menu__shop-button {
+    margin-top: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .mobile-menu {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  (function() {
+    const header = document.getElementById('header-nav');
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const headerWrapper = document.querySelector('.header-wrapper');
+
+    // Scroll effect
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 20) {
+        headerWrapper.classList.add('scrolled');
+      } else {
+        headerWrapper.classList.remove('scrolled');
+      }
+    });
+
+    // Mobile menu toggle
+    if (mobileMenuToggle && mobileMenu) {
+      mobileMenuToggle.addEventListener('click', function() {
+        mobileMenu.classList.toggle('open');
+      });
+
+      // Close menu when clicking links
+      const mobileLinks = mobileMenu.querySelectorAll('.mobile-menu__link');
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          mobileMenu.classList.remove('open');
+        });
+      });
+    }
+  })();
+</script>
+

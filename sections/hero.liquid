@@ -1,0 +1,262 @@
+{% comment %}
+  Hero section
+{% endcomment %}
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Background Image"
+    },
+    {
+      "type": "text",
+      "id": "hero_badge",
+      "label": "Hero Badge Text",
+      "default": "Premium Milk & Honey Skincare"
+    },
+    {
+      "type": "text",
+      "id": "hero_title",
+      "label": "Hero Title",
+      "default": "Welcome to Feezish"
+    },
+    {
+      "type": "text",
+      "id": "hero_subtitle",
+      "label": "Hero Subtitle",
+      "default": "Where nature meets skincare — indulge in the blend of Milk & Honey"
+    },
+    {
+      "type": "text",
+      "id": "button_1_text",
+      "label": "Button 1 Text",
+      "default": "Explore Collection"
+    },
+    {
+      "type": "url",
+      "id": "button_1_link",
+      "label": "Button 1 Link"
+    },
+    {
+      "type": "text",
+      "id": "button_2_text",
+      "label": "Button 2 Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_2_link",
+      "label": "Button 2 Link"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="hero-section" data-testid="section-hero">
+  {% if section.settings.hero_image %}
+    <div class="hero-section__background" style="background-image: url('{{ section.settings.hero_image | image_url: width: 1920 }}');">
+      <div class="hero-section__overlay"></div>
+    </div>
+  {% else %}
+    <div class="hero-section__background" style="background-image: url('{{ 'Honey_milk_blend_hero_background_ae27868b.png' | asset_url }}');">
+      <div class="hero-section__overlay"></div>
+    </div>
+  {% endif %}
+
+  <div class="hero-section__decoration hero-section__decoration--1"></div>
+  <div class="hero-section__decoration hero-section__decoration--2"></div>
+  <div class="hero-section__decoration hero-section__decoration--3"></div>
+  <div class="hero-section__decoration hero-section__decoration--4"></div>
+
+  <div class="hero-section__content">
+    <div class="hero-section__inner">
+      <div class="hero-section__badge">
+        <span>{{ section.settings.hero_badge | default: "Premium Milk & Honey Skincare" }}</span>
+      </div>
+
+      <h1 class="hero-section__title" data-testid="text-hero-title">
+        {{ section.settings.hero_title | default: "Welcome to" }} 
+        <span class="hero-section__title-highlight">Feezish</span>
+      </h1>
+
+      <p class="hero-section__subtitle" data-testid="text-hero-subtitle">
+        {{ section.settings.hero_subtitle | default: "Where nature meets skincare — indulge in the blend of Milk & Honey" }}
+      </p>
+
+      <div class="hero-section__buttons">
+        <a href="{{ section.settings.button_1_link | default: routes.all_products_collection_url }}" class="button button--primary button--large" data-testid="button-explore-collection">
+          {{ section.settings.button_1_text | default: "Explore Collection" }}
+        </a>
+        <a href="{{ section.settings.button_2_link | default: routes.all_products_collection_url }}" class="button button--outline button--large" data-testid="button-shop-now-hero">
+          {{ section.settings.button_2_text | default: "Shop Now" }}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-section__wave">
+    <svg viewBox="0 0 1200 100" preserveAspectRatio="none" class="hero-section__wave-svg">
+      <path d="M0,0 Q300,50 600,30 T1200,0 L1200,100 L0,100 Z" fill="hsl(var(--background))" opacity="0.8"></path>
+      <path d="M0,20 Q300,70 600,50 T1200,20 L1200,100 L0,100 Z" fill="hsl(var(--background))"></path>
+    </svg>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-section__background {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .hero-section__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, hsl(var(--background) / 0.4), hsl(var(--background) / 0.2), hsl(var(--background)));
+  }
+
+  .hero-section__decoration {
+    position: absolute;
+    opacity: 0.3;
+  }
+
+  .hero-section__decoration--1 {
+    top: 25%;
+    left: 25%;
+    width: 3rem;
+    height: 3rem;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .hero-section__decoration--2 {
+    top: 33%;
+    right: 33%;
+    width: 2rem;
+    height: 2rem;
+    animation: float-slow 8s ease-in-out infinite;
+    animation-delay: 1s;
+  }
+
+  .hero-section__decoration--3 {
+    bottom: 33%;
+    left: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    animation: float 6s ease-in-out infinite;
+    animation-delay: 2s;
+  }
+
+  .hero-section__decoration--4 {
+    top: 25%;
+    right: 25%;
+    width: 3.75rem;
+    height: 3.75rem;
+    animation: float-slow 8s ease-in-out infinite;
+  }
+
+  .hero-section__decoration::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: hsl(var(--primary));
+  }
+
+  .hero-section__content {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 5rem 1rem;
+    text-align: center;
+  }
+
+  .hero-section__inner {
+    max-width: 64rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .hero-section__badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    background: hsl(var(--primary) / 0.1);
+    border: 1px solid hsl(var(--primary) / 0.2);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: hsl(var(--primary));
+    margin-bottom: 1rem;
+  }
+
+  .hero-section__title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.25rem, 5vw, 4.5rem);
+    font-weight: bold;
+    color: hsl(var(--foreground));
+    line-height: 1.2;
+  }
+
+  .hero-section__title-highlight {
+    background: linear-gradient(to right, hsl(var(--primary)), hsl(38 100% 50%), hsl(38 100% 40%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-section__subtitle {
+    font-size: clamp(1.125rem, 2vw, 1.5rem);
+    color: hsl(var(--muted-foreground));
+    font-weight: 300;
+    max-width: 42rem;
+    margin: 0 auto;
+  }
+
+  .hero-section__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    padding-top: 2rem;
+  }
+
+  @media (min-width: 640px) {
+    .hero-section__buttons {
+      flex-direction: row;
+    }
+  }
+
+  .hero-section__wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 6rem;
+    overflow: hidden;
+  }
+
+  .hero-section__wave-svg {
+    width: 100%;
+    height: 100%;
+  }
+</style>
+

@@ -1,0 +1,249 @@
+{% comment %}
+  About section
+{% endcomment %}
+
+{% schema %}
+{
+  "name": "About",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "about_image",
+      "label": "About Image"
+    },
+    {
+      "type": "text",
+      "id": "about_label",
+      "label": "Section Label",
+      "default": "Our Story"
+    },
+    {
+      "type": "text",
+      "id": "about_title",
+      "label": "Title",
+      "default": "Nourish Your Skin with Nature's Purest Blend"
+    },
+    {
+      "type": "textarea",
+      "id": "about_description_1",
+      "label": "Description 1",
+      "default": "Feezish skincare products are crafted with organic milk and golden honey to hydrate, heal, and enhance your natural glow. We believe in the power of nature's finest ingredients to transform your skincare routine into a luxurious ritual."
+    },
+    {
+      "type": "textarea",
+      "id": "about_description_2",
+      "label": "Description 2",
+      "default": "Each product is carefully formulated to combine ancient beauty secrets with modern science, delivering exceptional results that you can see and feel. Experience the difference of pure, natural ingredients working in harmony with your skin."
+    }
+  ]
+}
+{% endschema %}
+
+<section id="about" class="about-section" data-testid="section-about">
+  <div class="about-section__container">
+    <div class="about-section__grid">
+      <div class="about-section__image-wrapper">
+        {% if section.settings.about_image %}
+          <img 
+            src="{{ section.settings.about_image | image_url: width: 800 }}" 
+            alt="About Feezish" 
+            class="about-section__image"
+            data-testid="img-about"
+            loading="lazy"
+          >
+        {% else %}
+          <img 
+            src="{{ 'Face_care_category_image_99c2506d.png' | asset_url }}" 
+            alt="About Feezish" 
+            class="about-section__image"
+            data-testid="img-about"
+            loading="lazy"
+          >
+        {% endif %}
+        <div class="about-section__image-overlay"></div>
+        <div class="about-section__decoration"></div>
+      </div>
+
+      <div class="about-section__content">
+        <div class="about-section__label">
+          <span>{{ section.settings.about_label | default: "Our Story" }}</span>
+          <div class="about-section__label-line"></div>
+        </div>
+
+        <h2 class="about-section__title" data-testid="text-about-title">
+          {{ section.settings.about_title | default: "Nourish Your Skin with Nature's Purest Blend" }}
+        </h2>
+
+        <p class="about-section__description" data-testid="text-about-description">
+          {{ section.settings.about_description_1 | default: "Feezish skincare products are crafted with organic milk and golden honey to hydrate, heal, and enhance your natural glow. We believe in the power of nature's finest ingredients to transform your skincare routine into a luxurious ritual." }}
+        </p>
+
+        <p class="about-section__description">
+          {{ section.settings.about_description_2 | default: "Each product is carefully formulated to combine ancient beauty secrets with modern science, delivering exceptional results that you can see and feel. Experience the difference of pure, natural ingredients working in harmony with your skin." }}
+        </p>
+
+        <div class="about-section__features">
+          <div class="about-section__feature">
+            <div class="about-section__feature-dot"></div>
+            <span>100% Natural</span>
+          </div>
+          <div class="about-section__feature">
+            <div class="about-section__feature-dot"></div>
+            <span>Cruelty-Free</span>
+          </div>
+          <div class="about-section__feature">
+            <div class="about-section__feature-dot"></div>
+            <span>Dermatologist-Tested</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-section {
+    padding: 4rem 1rem;
+    background: linear-gradient(to bottom, hsl(var(--background)), hsl(var(--secondary) / 0.3));
+  }
+
+  @media (min-width: 768px) {
+    .about-section {
+      padding: 6rem 1rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .about-section {
+      padding: 8rem 1rem;
+    }
+  }
+
+  .about-section__container {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .about-section__grid {
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  @media (min-width: 768px) {
+    .about-section__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .about-section__grid {
+      gap: 4rem;
+    }
+  }
+
+  .about-section__image-wrapper {
+    position: relative;
+  }
+
+  .about-section__image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  .about-section__image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, hsl(var(--primary) / 0.2), transparent);
+    border-radius: 0.5rem;
+    pointer-events: none;
+  }
+
+  .about-section__decoration {
+    position: absolute;
+    bottom: -1.5rem;
+    right: -1.5rem;
+    width: 8rem;
+    height: 8rem;
+    background: linear-gradient(to bottom right, hsl(var(--primary)), hsl(42 100% 69%));
+    border-radius: 50%;
+    opacity: 0.2;
+    filter: blur(2rem);
+  }
+
+  .about-section__content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .about-section__label {
+    display: inline-block;
+  }
+
+  .about-section__label span {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: hsl(var(--primary));
+  }
+
+  .about-section__label-line {
+    height: 0.25rem;
+    width: 3rem;
+    background: linear-gradient(to right, hsl(var(--primary)), hsl(42 100% 69%));
+    margin-top: 0.5rem;
+  }
+
+  .about-section__title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.875rem, 4vw, 3rem);
+    font-weight: bold;
+    color: hsl(var(--foreground));
+    line-height: 1.2;
+  }
+
+  .about-section__description {
+    font-size: 1rem;
+    color: hsl(var(--muted-foreground));
+    line-height: 1.75;
+  }
+
+  @media (min-width: 768px) {
+    .about-section__description {
+      font-size: 1.125rem;
+    }
+  }
+
+  .about-section__features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-top: 1rem;
+  }
+
+  .about-section__feature {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .about-section__feature-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: hsl(var(--primary));
+  }
+
+  .about-section__feature span {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: hsl(var(--foreground));
+  }
+</style>
+

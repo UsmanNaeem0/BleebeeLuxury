@@ -1,0 +1,285 @@
+{% comment %}
+  Categories section
+{% endcomment %}
+
+{% schema %}
+{
+  "name": "Categories",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_label",
+      "label": "Section Label",
+      "default": "Browse Collections"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Shop by Category"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "text",
+          "id": "category_name",
+          "label": "Category Name"
+        },
+        {
+          "type": "textarea",
+          "id": "category_description",
+          "label": "Category Description"
+        },
+        {
+          "type": "image_picker",
+          "id": "category_image",
+          "label": "Category Image"
+        },
+        {
+          "type": "url",
+          "id": "category_link",
+          "label": "Category Link"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<section id="shop" class="categories-section" data-testid="section-categories">
+  <div class="categories-section__container">
+    <div class="categories-section__header">
+      <span class="categories-section__label">{{ section.settings.section_label | default: "Browse Collections" }}</span>
+      <h2 class="categories-section__title" data-testid="text-categories-title">
+        {{ section.settings.section_title | default: "Shop by Category" }}
+      </h2>
+    </div>
+
+    {% if section.blocks.size > 0 %}
+      <div class="categories-section__grid">
+        {% for block in section.blocks %}
+          <a href="{{ block.settings.category_link | default: '#' }}" class="category-card" data-testid="category-card-{{ block.id }}">
+            <div class="category-card__image-wrapper">
+              {% if block.settings.category_image %}
+                <img 
+                  src="{{ block.settings.category_image | image_url: width: 600 }}" 
+                  alt="{{ block.settings.category_name | escape }}"
+                  class="category-card__image"
+                  data-testid="img-category-{{ block.id }}"
+                  loading="lazy"
+                >
+              {% else %}
+                <div class="category-card__placeholder"></div>
+              {% endif %}
+              <div class="category-card__overlay"></div>
+              
+              <div class="category-card__content">
+                <h3 class="category-card__title" data-testid="text-category-name-{{ block.id }}">
+                  {{ block.settings.category_name | default: "Category" }}
+                </h3>
+                <p class="category-card__description" data-testid="text-category-description-{{ block.id }}">
+                  {{ block.settings.category_description }}
+                </p>
+                <span class="category-card__button" data-testid="button-shop-category-{{ block.id }}">
+                  Shop Now
+                </span>
+              </div>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="categories-section__empty" data-testid="empty-categories">
+        <p>No categories available at the moment.</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .categories-section {
+    padding: 4rem 1rem;
+    background: linear-gradient(to bottom, hsl(var(--secondary) / 0.2), hsl(var(--background)));
+  }
+
+  @media (min-width: 768px) {
+    .categories-section {
+      padding: 6rem 1rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .categories-section {
+      padding: 8rem 1rem;
+    }
+  }
+
+  .categories-section__container {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .categories-section__header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .categories-section__header {
+      margin-bottom: 4rem;
+    }
+  }
+
+  .categories-section__label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: hsl(var(--primary));
+  }
+
+  .categories-section__title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.875rem, 4vw, 3rem);
+    font-weight: bold;
+    color: hsl(var(--foreground));
+    margin-top: 1rem;
+  }
+
+  .categories-section__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .categories-section__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .categories-section__grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  .category-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: block;
+  }
+
+  .category-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  .category-card__image-wrapper {
+    position: relative;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+  }
+
+  .category-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s;
+  }
+
+  .category-card:hover .category-card__image {
+    transform: scale(1.1);
+  }
+
+  .category-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, hsl(var(--primary) / 0.8), hsl(var(--primary) / 0.4), transparent);
+    opacity: 0.6;
+    transition: opacity 0.3s;
+  }
+
+  .category-card:hover .category-card__overlay {
+    opacity: 0.8;
+  }
+
+  .category-card__content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .category-card__title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 0.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .category-card__title {
+      font-size: 1.875rem;
+    }
+  }
+
+  .category-card__description {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .category-card:hover .category-card__description {
+    opacity: 1;
+  }
+
+  .category-card__button {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(1rem);
+    transition: all 0.3s;
+  }
+
+  .category-card:hover .category-card__button {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .category-card__placeholder {
+    width: 100%;
+    height: 100%;
+    background: hsl(var(--secondary) / 0.3);
+  }
+
+  .categories-section__empty {
+    text-align: center;
+    padding: 5rem 1rem;
+    color: hsl(var(--muted-foreground));
+  }
+</style>
+

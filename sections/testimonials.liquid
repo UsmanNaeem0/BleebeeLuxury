@@ -1,0 +1,460 @@
+{% comment %}
+  Testimonials section
+{% endcomment %}
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_label",
+      "label": "Section Label",
+      "default": "Testimonials"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Loved by Skin, Trusted by You"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "text",
+          "id": "testimonial_name",
+          "label": "Name"
+        },
+        {
+          "type": "text",
+          "id": "testimonial_role",
+          "label": "Role"
+        },
+        {
+          "type": "textarea",
+          "id": "testimonial_content",
+          "label": "Testimonial Content"
+        },
+        {
+          "type": "range",
+          "id": "testimonial_rating",
+          "label": "Rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "image_picker",
+          "id": "testimonial_image",
+          "label": "Customer Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "testimonial_name": "Sarah Johnson",
+            "testimonial_role": "Beauty Enthusiast",
+            "testimonial_content": "Feezish has transformed my skincare routine. The milk and honey blend is incredibly nourishing!",
+            "testimonial_rating": 5
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "testimonial_name": "Emily Chen",
+            "testimonial_role": "Skincare Expert",
+            "testimonial_content": "As someone who's tried countless products, Feezish stands out for its natural ingredients and amazing results.",
+            "testimonial_rating": 5
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "testimonial_name": "Jessica Williams",
+            "testimonial_role": "Lifestyle Blogger",
+            "testimonial_content": "My skin has never felt so soft and hydrated. The honey serum is absolutely divine!",
+            "testimonial_rating": 5
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<section class="testimonials-section" data-testid="section-testimonials">
+  <div class="testimonials-section__background"></div>
+
+  <div class="testimonials-section__container">
+    <div class="testimonials-section__header">
+      <span class="testimonials-section__label">{{ section.settings.section_label | default: "Testimonials" }}</span>
+      <h2 class="testimonials-section__title" data-testid="text-testimonials-title">
+        {{ section.settings.section_title | default: "Loved by Skin, Trusted by You" }}
+      </h2>
+    </div>
+
+    {% if section.blocks.size > 0 %}
+      <div class="testimonials-section__slider">
+        <div class="testimonials-section__slides" id="testimonials-slides">
+          {% for block in section.blocks %}
+            <div class="testimonial-slide" data-testid="card-testimonial-{{ block.id }}" data-index="{{ forloop.index0 }}">
+              <div class="testimonial-card">
+                <div class="testimonial-card__content">
+                  <div class="testimonial-card__avatar">
+                    {% if block.settings.testimonial_image %}
+                      <img 
+                        src="{{ block.settings.testimonial_image | image_url: width: 200 }}" 
+                        alt="{{ block.settings.testimonial_name | escape }}"
+                        class="testimonial-card__image"
+                        data-testid="img-testimonial-{{ block.id }}"
+                        loading="lazy"
+                      >
+                    {% else %}
+                      <div class="testimonial-card__placeholder"></div>
+                    {% endif %}
+                    <div class="testimonial-card__badge">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                      </svg>
+                    </div>
+                  </div>
+
+                  <div class="testimonial-card__stars">
+                    {% for i in (1..block.settings.testimonial_rating) %}
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" data-testid="star-{{ block.id }}-{{ i }}">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                      </svg>
+                    {% endfor %}
+                  </div>
+
+                  <p class="testimonial-card__text" data-testid="text-testimonial-content-{{ block.id }}">
+                    "{{ block.settings.testimonial_content }}"
+                  </p>
+
+                  <div class="testimonial-card__author">
+                    <h4 class="testimonial-card__name" data-testid="text-testimonial-name-{{ block.id }}">
+                      {{ block.settings.testimonial_name }}
+                    </h4>
+                    <p class="testimonial-card__role" data-testid="text-testimonial-role-{{ block.id }}">
+                      {{ block.settings.testimonial_role }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="testimonials-section__dots">
+          {% for block in section.blocks %}
+            <button 
+              type="button" 
+              class="testimonial-dot {% if forloop.first %}active{% endif %}" 
+              data-index="{{ forloop.index0 }}"
+              data-testid="button-testimonial-dot-{{ forloop.index0 }}"
+              aria-label="Go to testimonial {{ forloop.index }}"
+            ></button>
+          {% endfor %}
+        </div>
+      </div>
+    {% else %}
+      <div class="testimonials-section__empty" data-testid="empty-testimonials">
+        <p>No testimonials available at the moment.</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .testimonials-section {
+    position: relative;
+    padding: 4rem 1rem;
+    background: linear-gradient(to bottom right, hsl(var(--secondary) / 0.4), hsl(var(--primary) / 0.1), hsl(var(--secondary) / 0.4));
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .testimonials-section {
+      padding: 6rem 1rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .testimonials-section {
+      padding: 8rem 1rem;
+    }
+  }
+
+  .testimonials-section__background {
+    position: absolute;
+    inset: 0;
+    opacity: 0.1;
+  }
+
+  .testimonials-section__background::before {
+    content: '';
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 16rem;
+    height: 16rem;
+    background: hsl(var(--primary));
+    border-radius: 50%;
+    filter: blur(3rem);
+  }
+
+  .testimonials-section__background::after {
+    content: '';
+    position: absolute;
+    bottom: 25%;
+    right: 25%;
+    width: 24rem;
+    height: 24rem;
+    background: hsl(42 100% 69%);
+    border-radius: 50%;
+    filter: blur(3rem);
+  }
+
+  .testimonials-section__container {
+    max-width: 1280px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+  }
+
+  .testimonials-section__header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .testimonials-section__header {
+      margin-bottom: 4rem;
+    }
+  }
+
+  .testimonials-section__label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: hsl(var(--primary));
+  }
+
+  .testimonials-section__title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.875rem, 4vw, 3rem);
+    font-weight: bold;
+    color: hsl(var(--foreground));
+    margin-top: 1rem;
+  }
+
+  .testimonials-section__slider {
+    max-width: 64rem;
+    margin: 0 auto;
+  }
+
+  .testimonials-section__slides {
+    position: relative;
+    min-height: 400px;
+  }
+
+  @media (min-width: 768px) {
+    .testimonials-section__slides {
+      min-height: 300px;
+    }
+  }
+
+  .testimonial-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.5s, transform 0.5s;
+    z-index: 0;
+  }
+
+  .testimonial-slide.active {
+    opacity: 1;
+    transform: scale(1);
+    z-index: 10;
+  }
+
+  .testimonial-card {
+    background: hsl(var(--card) / 0.8);
+    backdrop-filter: blur(8px);
+    border: 1px solid hsl(var(--primary) / 0.2);
+    border-radius: 0.5rem;
+    padding: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .testimonial-card {
+      padding: 3rem;
+    }
+  }
+
+  .testimonial-card__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  .testimonial-card__avatar {
+    position: relative;
+  }
+
+  .testimonial-card__image {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid hsl(var(--primary) / 0.2);
+  }
+
+  @media (min-width: 768px) {
+    .testimonial-card__image {
+      width: 6rem;
+      height: 6rem;
+    }
+  }
+
+  .testimonial-card__placeholder {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    background: hsl(var(--secondary));
+    border: 4px solid hsl(var(--primary) / 0.2);
+  }
+
+  .testimonial-card__badge {
+    position: absolute;
+    bottom: -0.5rem;
+    right: -0.5rem;
+    width: 2rem;
+    height: 2rem;
+    background: linear-gradient(to bottom right, hsl(var(--primary)), hsl(42 100% 69%));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+
+  .testimonial-card__stars {
+    display: flex;
+    gap: 0.25rem;
+    color: hsl(var(--primary));
+  }
+
+  .testimonial-card__text {
+    font-size: 1rem;
+    color: hsl(var(--foreground));
+    line-height: 1.75;
+    font-style: italic;
+    max-width: 42rem;
+  }
+
+  @media (min-width: 768px) {
+    .testimonial-card__text {
+      font-size: 1.125rem;
+    }
+  }
+
+  .testimonial-card__author {
+    margin-top: 0.5rem;
+  }
+
+  .testimonial-card__name {
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: hsl(var(--foreground));
+    margin-bottom: 0.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .testimonial-card__name {
+      font-size: 1.25rem;
+    }
+  }
+
+  .testimonial-card__role {
+    font-size: 0.875rem;
+    color: hsl(var(--muted-foreground));
+  }
+
+  .testimonials-section__dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+  }
+
+  .testimonial-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 9999px;
+    background: hsl(var(--primary) / 0.3);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    padding: 0;
+  }
+
+  .testimonial-dot.active {
+    width: 2rem;
+    background: hsl(var(--primary));
+  }
+
+  .testimonials-section__empty {
+    text-align: center;
+    padding: 5rem 1rem;
+    color: hsl(var(--muted-foreground));
+  }
+</style>
+
+<script>
+  (function() {
+    const slides = document.querySelectorAll('.testimonial-slide');
+    const dots = document.querySelectorAll('.testimonial-dot');
+    let currentIndex = 0;
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+    }
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        currentIndex = index;
+        showSlide(currentIndex);
+      });
+    });
+
+    if (slides.length > 0) {
+      setInterval(() => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        showSlide(currentIndex);
+      }, 5000);
+    }
+  })();
+</script>
+
