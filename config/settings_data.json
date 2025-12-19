@@ -52,6 +52,15 @@
       "categories": {
         "type": "categories",
         "blocks": {
+          "category_rnQzzW": {
+            "type": "category",
+            "settings": {
+              "category_name": "Feezish HydraMilk Cleanser",
+              "category_description": "Moisture Balance: Keeps skin hydrated and prevents redness or irritation.\nPore Refining: Helps in shrinking the appearance of pores for a smoother texture.\nRadiance Boost: Delivers a glow boosting effect for a white and clear complexion.\nSafe Formula: Paraben free, sulphate free, and non-comedogenic.\nTransform your daily routine with HydraMilk Cleanser, a luxurious face wash designed to deliver a perfect balance of purity and hydration. Unlike harsh soaps that strip your barrier, this milky gel formula offers a gentle yet effective cleanse, making it the best start to your skincare regimen.\n\nDeep Cleansing & Purifying Experience a deep cleansing session every time you wash. This cleanser penetrates pores to remove pollutants and excess sebum, acting as a daily detox for your face. It helps reduce the risk of pimple formation and acne, making it a superior alternative to basic soap or clay washes.",
+              "category_image": "shopify://shop_images/ma_9d98067d-47c4-483f-934f-61543941431b.jpg",
+              "category_link": ""
+            }
+          },
           "category_34nze9": {
             "type": "category",
             "settings": {
@@ -63,6 +72,7 @@
           }
         },
         "block_order": [
+          "category_rnQzzW",
           "category_34nze9"
         ],
         "settings": {
