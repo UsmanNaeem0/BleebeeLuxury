@@ -51,20 +51,6 @@
       },
       "categories": {
         "type": "categories",
-        "blocks": {
-          "category_ym98Rp": {
-            "type": "category",
-            "settings": {
-              "category_name": "Feezish Glow Drop Face Wash",
-              "category_description": "Removes dead skin and dirt to make your face bright and fresh.\nUnclogs pores naturally for soft and smooth skin you’ll love.\nHydrates and nourishes to keep your skin healthy and glowing.\nTurns your daily wash into a moment of care for your skin.\n\nReveal your skin’s natural glow with Glow Drop Face Wash, a gentle yet effective cleanser infused with the nourishing goodness of Milk &amp; Honey Extract. Specially designed to cleanse without over-drying, this formula helps maintain your skin’s natural balance while leaving it soft, smooth, and radiant.\n\n\n\nEnriched with Glycerin and Sorbitol, it helps attract and retain moisture, ensuring skin stays hydrated after every wash. Squalene provides an extra layer of nourishment, while Potassium Cocoyl Glycinate and Sodium Myreth Sulfate create a rich, creamy lather that gently lifts away dirt, oil, and impurities.\n\n\n\nWith its mild, pH-balanced formula, Glow Drop Face Wash supports a clean, healthy complexion and a fresh, luminous finish suitable for everyday use and all skin types.",
-              "category_image": "shopify://shop_images/2.jpg",
-              "category_link": ""
-            }
-          }
-        },
-        "block_order": [
-          "category_ym98Rp"
-        ],
         "settings": {
           "section_label": "Browse Collections",
           "section_title": "Shop by Category"
