@@ -336,6 +336,27 @@
   transform: translateY(-1px);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
+
+/* Hamburger icon background + shape */
+.header__icon--menu {
+  background: linear-gradient(
+    to right,
+    hsl(var(--primary)),
+    hsl(38 100% 50%)
+  );
+  border-radius: 999px;   /* rounded shape */
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+/* Hamburger lines color */
+.header__icon--menu svg,
+.header__icon--menu line,
+.header__icon--menu path {
+  stroke: hsl(var(--primary-foreground));
+  fill: hsl(var(--primary-foreground));
+}
+
 </style>
 
 <script>
