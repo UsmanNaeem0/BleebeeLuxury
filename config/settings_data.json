@@ -52,6 +52,15 @@
       "categories": {
         "type": "categories",
         "blocks": {
+          "category_7MyBtd": {
+            "type": "category",
+            "settings": {
+              "category_name": "Feezish Serum-e-Noor",
+              "category_description": "Luminous Glow: Instantly enhances radiance and softness.\nNutrient Rich: Packed with Vitamins and fatty acids to nourish the skin barrier.\nTexture Refining: Refining pores and smoothing rough texture for a glass skin finish.\nSafe & Pure: Paraben free, dermatologically tested, and non-comedogenic.\nSuper Glowing Finish: A powerful glowing elixir that brightens the face for visible brightness.\nAnti-Aging & Repair: Rich in Vitamin antioxidants to reduce fine lines, wrinkles, and premature signs of aging.\nDark Spot Correction: Helps even skin tone and target dark spots for a flawless complexion.\nDeep Hydration: A hydrating formula with organic Glycerin that locks in moisture without being greasy.\nAcne & Pore Care: Soothing Lavender helps control oil and serves as a gentle anti acne aid for clearer skin.",
+              "category_image": "shopify://shop_images/1_be3843b3-c22b-4b67-8050-1c06cd258ee2.jpg",
+              "category_link": ""
+            }
+          },
           "category_rnQzzW": {
             "type": "category",
             "settings": {
@@ -72,6 +81,7 @@
           }
         },
         "block_order": [
+          "category_7MyBtd",
           "category_rnQzzW",
           "category_34nze9"
         ],
