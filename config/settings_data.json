@@ -52,6 +52,15 @@
       "categories": {
         "type": "categories",
         "blocks": {
+          "category_FFHc6k": {
+            "type": "category",
+            "settings": {
+              "category_name": "Feezish Moon Drop Night Cream",
+              "category_description": "● Supports smooth-looking skin\n\n● Helps provide a radiant appearance\n\n● Helps maintain skin firmness and conditioning\n\n● Absorbs easily; suitable for everyday application\n\nTransform your nightly routine with Moon Drop Night Cream, a gentle formula designed for women and girls who want naturally refreshed and smooth-looking skin. With a blend inspired by Milk and Honey and essential skincare actives, it supports the appearance of a well-conditioned and beautifully hydrated complexion.\n\nGentle Night Care\nWake up to skin that looks fresh and refined. This moisturizer helps improve the appearance of uneven skin tone and gives skin a naturally radiant look.\n\nSmooth & Soft Look\nFormulated with Niacinamide (Vitamin B3) and Sweet Almond Oil, this night cream helps support a conditioned look while maintaining a healthy-looking skin barrier. Ideal for anyone wanting skin that looks refreshed after a long day.",
+              "category_image": "shopify://shop_images/ni_6accff6a-eb01-4529-9a5e-39339e3fe977.jpg",
+              "category_link": ""
+            }
+          },
           "category_AwHWfH": {
             "type": "category",
             "settings": {
@@ -90,6 +99,7 @@
           }
         },
         "block_order": [
+          "category_FFHc6k",
           "category_AwHWfH",
           "category_7MyBtd",
           "category_rnQzzW",
