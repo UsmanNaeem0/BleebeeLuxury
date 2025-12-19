@@ -52,6 +52,15 @@
       "categories": {
         "type": "categories",
         "blocks": {
+          "category_AwHWfH": {
+            "type": "category",
+            "settings": {
+              "category_name": "Feezish Milky Bright Face Toner",
+              "category_description": "Natural Glow: Nourishes with Milk & Honey for a youthful look.\nPore Minimizing: Shrink the look of pores for a refined visage.\nMoisture Boost: Replenishing lipids to prevent premature dryness.\nNon-Greasy: Absorbs quickly like a spray, leaving no residue.\nSafe: Dermatologically tested, Paraben free, and Non-Comedogenic.\nRestore your skin’s natural glow with a luxurious toning solution designed to give you the ultimate radiance boost, a gentle, hydrating toner infused with the nourishing essence of Milk & Honey Extract. Designed to balance, refresh, and soften the skin after cleansing, this formula prepares your complexion for better absorption of moisture and active ingredients.\n\n\nComplete your skincare routine with Feezish Milky Bright Face Toner, Unlike harsh astringents, this milky essence offers a soft touch of care, combining the refreshing feel of pure new skin with the deep nourishment of Milk & Honey.",
+              "category_image": "shopify://shop_images/1_e6db277a-891a-4aa6-8328-d40fe063338d.jpg",
+              "category_link": ""
+            }
+          },
           "category_7MyBtd": {
             "type": "category",
             "settings": {
@@ -81,6 +90,7 @@
           }
         },
         "block_order": [
+          "category_AwHWfH",
           "category_7MyBtd",
           "category_rnQzzW",
           "category_34nze9"
