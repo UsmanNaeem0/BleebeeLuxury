@@ -337,24 +337,29 @@
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
 
-/* Hamburger icon background + shape */
+/* Hamburger icon background */
 .header__icon--menu {
-  background: linear-gradient(
-    to right,
-    hsl(var(--primary)),
-    hsl(38 100% 50%)
-  );
-  border-radius: 999px;   /* rounded shape */
+  background: #F4C430;
+  border-radius: 999px;
   width: 2.5rem;
   height: 2.5rem;
+  border: none;          /* removes black stroke */
+  box-shadow: none;      /* removes outline/shadow */
 }
 
-/* Hamburger lines color */
+/* Hamburger lines */
 .header__icon--menu svg,
 .header__icon--menu line,
 .header__icon--menu path {
-  stroke: hsl(var(--primary-foreground));
-  fill: hsl(var(--primary-foreground));
+  stroke: #ffffff;      /* white lines */
+  fill: #ffffff;
+}
+
+/* Remove focus/active outline */
+.header__icon--menu:focus,
+.header__icon--menu:focus-visible {
+  outline: none;
+  box-shadow: none;
 }
 
 </style>
