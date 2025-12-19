@@ -311,6 +311,32 @@
   .header__logo-icon {
   margin-left: 10px;
 }
+
+/* Shop Now button styling */
+.header__icon--shop {
+  width: auto;                 /* fixes bad shape */
+  height: auto;
+  padding: 0.45rem 1.1rem;     /* proper fit */
+  border-radius: 999px;        /* pill shape */
+  background: linear-gradient(
+    to right,
+    hsl(var(--primary)),
+    hsl(38 100% 50%)
+  );
+  color: hsl(var(--primary-foreground));
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Hover effect */
+.header__icon--shop:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
 </style>
 
 <script>
