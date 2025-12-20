@@ -41,13 +41,7 @@
       },
       "featured-products": {
         "type": "featured-products",
-        "settings": {
-          "section_label": "Premium Collection",
-          "section_title": "Our Bestsellers",
-          "section_description": "Discover our most-loved products, crafted with the finest natural ingredients",
-          "featured_collection": "",
-          "products_to_show": 4
-        }
+        "settings": {}
       },
       "categories": {
         "type": "categories",
@@ -130,6 +124,20 @@
       },
       "testimonials": {
         "type": "testimonials",
+        "blocks": {
+          "testimonial_piYB4B": {
+            "type": "testimonial",
+            "settings": {
+              "testimonial_name": "",
+              "testimonial_role": "",
+              "testimonial_content": "",
+              "testimonial_rating": 5
+            }
+          }
+        },
+        "block_order": [
+          "testimonial_piYB4B"
+        ],
         "settings": {
           "section_label": "Testimonials",
           "section_title": "Loved by Skin, Trusted by You"
