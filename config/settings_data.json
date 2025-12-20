@@ -33,6 +33,7 @@
       "about": {
         "type": "about",
         "settings": {
+          "about_image": "shopify://shop_images/4ee0ff0ab4810c9fe42c727dd08515d7_png_720x720q80_png.webp",
           "about_label": "Our Story",
           "about_title": "Nourish Your Skin with Nature's Purest Blend",
           "about_description_1": "Feezish skincare products are crafted with organic milk and golden honey to hydrate, heal, and enhance your natural glow. We believe in the power of nature's finest ingredients to transform your skincare routine into a luxurious ritual.",
