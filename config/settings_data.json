@@ -125,17 +125,29 @@
       "testimonials": {
         "type": "testimonials",
         "blocks": {
+          "testimonial_Pq4ATT": {
+            "type": "testimonial",
+            "settings": {
+              "testimonial_name": "Sara Ahmed",
+              "testimonial_role": "Skincare Enthusiast",
+              "testimonial_content": "“Feezish has completely elevated my skincare routine. The texture, quality, and results feel truly premium. My skin has never looked better.”",
+              "testimonial_rating": 5,
+              "testimonial_image": "shopify://shop_images/avatar-3637645_1280.png"
+            }
+          },
           "testimonial_piYB4B": {
             "type": "testimonial",
             "settings": {
-              "testimonial_name": "",
-              "testimonial_role": "",
-              "testimonial_content": "",
-              "testimonial_rating": 5
+              "testimonial_name": "Ayesha Khan",
+              "testimonial_role": "Verified Customer",
+              "testimonial_content": "“Feezish skincare feels luxurious and effective. My skin looks healthier, smoother, and more radiant with every use. Truly a brand I trust.”",
+              "testimonial_rating": 4,
+              "testimonial_image": "shopify://shop_images/icon-7797704_1280.png"
             }
           }
         },
         "block_order": [
+          "testimonial_Pq4ATT",
           "testimonial_piYB4B"
         ],
         "settings": {
