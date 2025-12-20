@@ -125,6 +125,16 @@
       "testimonials": {
         "type": "testimonials",
         "blocks": {
+          "testimonial_Yrnbee": {
+            "type": "testimonial",
+            "settings": {
+              "testimonial_name": "Hira Malik",
+              "testimonial_role": "Repeat Customer",
+              "testimonial_content": "“From the first use, Feezish felt different. Gentle on my skin yet visibly effective. It’s skincare that actually delivers.”",
+              "testimonial_rating": 5,
+              "testimonial_image": "shopify://shop_images/woman-995164_1280.png"
+            }
+          },
           "testimonial_Pq4ATT": {
             "type": "testimonial",
             "settings": {
@@ -147,6 +157,7 @@
           }
         },
         "block_order": [
+          "testimonial_Yrnbee",
           "testimonial_Pq4ATT",
           "testimonial_piYB4B"
         ],
