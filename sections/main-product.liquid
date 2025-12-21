@@ -14,12 +14,14 @@
     Price: {{ product.price | money }}
   </p>
 
-  <form method="post" action="/cart/add">
-    <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+  {% assign current_variant = product.selected_or_first_available_variant %}
 
-    <button type="submit">
-      Add to Cart
-    </button>
-  </form>
+ <form method="post" action="/cart/add">
+  <input type="hidden" name="id" value="{{ current_variant.id }}">
+
+  <button type="submit">
+    Add to Cart
+  </button>
+</form>
 
 </section>
