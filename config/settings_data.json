@@ -25,9 +25,9 @@
           "hero_title": "Welcome to",
           "hero_subtitle": "Where nature meets skincare — indulge in the blend of Milk & Honey",
           "button_1_text": "Explore Collection",
-          "button_1_link": "",
+          "button_1_link": "shopify://collections",
           "button_2_text": "Shop Now",
-          "button_2_link": ""
+          "button_2_link": "shopify://collections/all"
         }
       },
       "about": {
